@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torchvision.models as models
+from torch.cuda.amp import autocast
 
 
 class ROObjectDetector(nn.Module):
@@ -17,6 +18,7 @@ class ROObjectDetector(nn.Module):
             nn.Linear(128, 10)  # 10 clases de objetos en RO
         ).to(self.device)
 
+    @autocast()
     def forward(self, x):
         x = self.features(x)
         x = torch.flatten(x, 1)
