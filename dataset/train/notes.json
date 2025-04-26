@@ -1,0 +1,101 @@
+{
+  "categories": [
+    {
+      "id": 0,
+      "name": "in_fly_wing"
+    },
+    {
+      "id": 1,
+      "name": "in_item_potion"
+    },
+    {
+      "id": 2,
+      "name": "mo_bigfoot"
+    },
+    {
+      "id": 3,
+      "name": "mo_caramel"
+    },
+    {
+      "id": 4,
+      "name": "mo_chonchon"
+    },
+    {
+      "id": 5,
+      "name": "mo_coco"
+    },
+    {
+      "id": 6,
+      "name": "mo_poring"
+    },
+    {
+      "id": 7,
+      "name": "mo_pupa"
+    },
+    {
+      "id": 8,
+      "name": "mo_red_mushroom"
+    },
+    {
+      "id": 9,
+      "name": "mo_roda_frog"
+    },
+    {
+      "id": 10,
+      "name": "mo_snake"
+    },
+    {
+      "id": 11,
+      "name": "mo_spore"
+    },
+    {
+      "id": 12,
+      "name": "mo_stainer"
+    },
+    {
+      "id": 13,
+      "name": "mo_worm_tail"
+    },
+    {
+      "id": 14,
+      "name": "pl_anon_player"
+    },
+    {
+      "id": 15,
+      "name": "pl_hp_bar"
+    },
+    {
+      "id": 16,
+      "name": "pl_hp_bar_anon_player"
+    },
+    {
+      "id": 17,
+      "name": "pl_self_player"
+    },
+    {
+      "id": 18,
+      "name": "pl_sp_bar"
+    },
+    {
+      "id": 19,
+      "name": "sk_heal"
+    },
+    {
+      "id": 20,
+      "name": "sk_teleport"
+    },
+    {
+      "id": 21,
+      "name": "ui_hp_bar"
+    },
+    {
+      "id": 22,
+      "name": "ui_sp_bar"
+    }
+  ],
+  "info": {
+    "year": 2025,
+    "version": "1.0",
+    "contributor": "Label Studio"
+  }
+}
