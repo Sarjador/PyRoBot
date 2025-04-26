@@ -5,16 +5,16 @@ import pygetwindow as gw
 from ultralytics import YOLO
 import time
 
-# yolo task=detect mode=train model=yolov8n.pt data=data.yaml epochs=500 imgsz=800 device=0
+# yolo task=detect mode=train models=yolov8n.pt data=data.yaml epochs=500 imgsz=640 device=0
 
-MODEL_PATH = "F:/GITHUB_REPOS/runs/detect/train/weights/best.pt"
+MODEL_PATH = "F:/GITHUB_REPOS/runs/detect/train2/weights/best.pt"
 CONFIDENCE_THRESHOLD = 0.5
 
 # Inicializa el modelo YOLOv8
 model = YOLO(MODEL_PATH)
 
 def find_ragnarok_window():
-    windows = gw.getWindowsWithTitle('Ragnarok')
+    windows = gw.getWindowsWithTitle('RO')
     for win in windows:
         if win.visible and win.width > 0 and win.height > 0:
             print(f"Ventana encontrada: {win.title}")

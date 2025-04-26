@@ -19,9 +19,13 @@ class BotDecisionSystem:
         # Reglas básicas
         if hp < 30:
             accion = "usar_pocion"
-        elif estado["num_mobs"] >= 3 and hp < 60:
+        elif estado["num_mobs"] >= 3 and hp < 50:
             accion = "huir"
-        elif any(mob in ["poring", "coco", "roda_frog"] for mob in mobs_detectados):
+        elif any(mob in ["familiar", "high_orc", "mvp_orc_lord", "npc", "orc_archer", "orc_baby", "orc_lady",
+                         "orc_skeleton", "orc_warrior", "orc_zombie", "plant_blue", "plant_green", "plant_red",
+                         "plant_white", "plant_yellow", "poison_spore", "red_mushroom", "black_mushroom", "roda_frog",
+                         "spore", "stainer", "steel_chonchon", "willow", "worm tail", "zenorc", "bigfoot", "boa",
+                         "caramel", "chonchon", "creamy", "drainliar", "elder_willow"] for mob in mobs_detectados):
             accion = "atacar"
         else:
             accion = "esperar"

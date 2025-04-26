@@ -49,8 +49,8 @@ class QLearningAgent:
 # Ejemplo de uso manual
 if __name__ == "__main__":
     agent = QLearningAgent(actions=["atacar", "usar_pocion", "huir", "esperar"])
-    estado = (100, 100, "poring")
+    estado = (100, 100, "coco")
     accion = agent.choose_action(estado)
     print("Acción elegida:", accion)
-    agent.learn(estado, accion, reward=1, next_state=(90, 100, "poring"))
+    agent.learn(estado, accion, reward=1, next_state=(90, 100, "coco"))
     agent.save()
