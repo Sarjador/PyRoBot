@@ -5,7 +5,7 @@ pyautogui~=0.9.54
 ultralytics==8.3.111
 contourpy==1.2.0
 mss~=10.0.0
-torch==2.6.0+cu118
+torch==2.7.1
 torchaudio==2.6.0+cu118
 torchvision==2.6.0+cu118
 pywin32
