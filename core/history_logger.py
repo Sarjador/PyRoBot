@@ -2,10 +2,13 @@ import csv
 import os
 from datetime import datetime
 
-#LOG_PATH = "../logs/decision_history.csv"
-LOG_PATH = "F:/GITHUB_REPOS/PyRoBot/logs/decision_history.csv"
+# Log path: configurable via environment variable
+# Example: set PYROBOT_LOG_DIR=F:/GITHUB_REPOS/PyRoBot/logs
+LOG_DIR = os.environ.get("PYROBOT_LOG_DIR", os.path.join(os.path.dirname(__file__), "..", "logs"))
+LOG_PATH = os.path.join(LOG_DIR, "decision_history.csv")
+
 # Asegura que la carpeta de logs exista
-os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
+os.makedirs(LOG_DIR, exist_ok=True)
 
 def inicializar_log():
     if not os.path.exists(LOG_PATH):

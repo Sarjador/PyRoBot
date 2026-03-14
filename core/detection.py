@@ -2,9 +2,11 @@ import cv2
 import numpy as np
 from ultralytics import YOLO
 from core.capture import encontrar_ventana, get_client_rect
+import os
 
-# Ajusta esta ruta a tu modelo real
-MODEL_PATH = "F:/GITHUB_REPOS/runs/detect/train2/weights/best.pt"
+# Load model path from environment or default to repository model
+DEFAULT_MODEL_PATH = os.path.join(os.path.dirname(__file__), "..", "models", "yolov8n.pt")
+MODEL_PATH = os.environ.get("PYROBOT_MODEL_PATH", os.path.abspath(os.path.normpath(DEFAULT_MODEL_PATH)))
 model = YOLO(MODEL_PATH)
 
 def detectar_mobs(frame, conf=0.25):
@@ -22,7 +24,7 @@ def detectar_mobs(frame, conf=0.25):
     for res in resultados:
         for b in res.boxes.xyxy.cpu().numpy().astype(int):
             x1, y1, x2, y2 = b
-            abs_boxes.append((x1 + left, y1 + top, x2 + left, y2 + top))
+            abs_boxes.append((int(x1) + int(left), int(y1) + int(top), int(x2) + int(left), int(y2) + int(top)))
     return abs_boxes
 
 if __name__ == "__main__":
@@ -31,9 +33,3 @@ if __name__ == "__main__":
     frame = capturar_client_area(v)
     boxes = detectar_mobs(frame)
     print("ABS boxes:", boxes)
-    # Dibuja para verificación:
-    for x1,y1,x2,y2 in boxes:
-        rx = x1 - left; ry = y1 - top  # relativos al frame
-        cv2.rectangle(frame, (rx, ry), (x2-left, y2-top), (0,255,0), 2)
-    cv2.imshow("abs detection", frame)
-    cv2.waitKey(0)
