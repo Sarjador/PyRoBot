@@ -15,9 +15,11 @@ class QLearningAgent:
             default_path = os.path.join(os.path.dirname(__file__), "..", "q_table.json")
             model_path = os.environ.get("PYROBOT_QTABLE_PATH", os.path.abspath(default_path))
         self.model_path = model_path
-
-        if os.path.exists(self.model_path):
-            self.load()
+        # Ensure directory exists for model_path to prevent write errors
+        try:
+            os.makedirs(os.path.dirname(self.model_path), exist_ok=True)
+        except Exception:
+            pass
 
     def get_state_key(self, state):
         """Convierte un estado complejo en una clave hashable"""
