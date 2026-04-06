@@ -1,26 +1,31 @@
-path: F:/GITHUB_REPOS/PyRoBot
-train: dataset/train/images
-val: dataset/val/images
-runs: models
+# data.yaml — Dataset de entrenamiento YOLO
+# FASE 2: Solo mobs reales de Ragnarok. 12 clases.
+# Entrenar con: yolo detect train data=data.yaml model=yolov8n.pt epochs=50
+
+# Clases de mobs (solo los relevantes para Ragnarok Online)
 names:
-  0: dog
-  1: person
-  2: cat
-  3: tv
-  4: car
-  5: meatballs
-  6: marinara sauce
-  7: tomato soup
-  8: chicken noodle soup
-  9: french onion soup
-  10: chicken breast
-  11: ribs
-  12: pulled pork
-  13: hamburger
-  14: cavity
-  15: coco
-  16: red_mushroom
-  17: roda_frog
-  18: pupa
-  19: chonchon
-  20: poring
+  0: poring
+  1: lunatic
+  2: ghost_ring
+  3: picky
+  4: drops
+  5: marin
+  6: devi
+  7: poporing
+  8: green_plant
+  9: blue_plant
+  10: red_plant
+  11: golden_plant
+
+# Rutas al dataset (relativas a este archivo)
+train: dataset/train
+val: dataset/val
+
+# Número de clases
+nc: 12
+
+# Imagen más pequeña válida
+min_size: 32
+
+# Aumento de datos (para el entrenamiento)
+# albumentations en augment_dataset.py
