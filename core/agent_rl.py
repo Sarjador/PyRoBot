@@ -7,7 +7,8 @@ class QLearningAgent:
         self.q_table = {}  # estado -> {accion: valor}
         self.alpha = alpha  # tasa de aprendizaje
         self.gamma = gamma  # descuento de futuro
-        self.epsilon = epsilon  # exploración
+        self.epsilon = epsilon
+        self.epsilon_decay = epsilon_decay if 'epsilon_decay' in dir() else 0.995  # exploración
         self.actions = actions
 
         # Model path: configurable via parameter or environment variable
