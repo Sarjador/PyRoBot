@@ -1,0 +1,84 @@
+# config.yaml — Configuración centralizada de PyRoBot
+# FASE 1: Todas las constantes del bot en un solo lugar.
+#          Cargar con: yaml.safe_load(open("config.yaml"))
+
+game:
+  # Nombre de la ventana de Ragnarok (búsqueda parcial)
+  window_name: "Ragnarok"
+  # FPS objetivo del bot
+  frame_rate: 5
+  # Frames máximo por episodio (0 = infinito)
+  max_episode_frames: 0
+
+arduino:
+  # Auto-detectar puerto serie
+  auto_detect: true
+  # Puerto explícito (null = auto-detect)
+  port: null
+  baudrate: 9600
+  # Forzar modo simulación
+  simulate: false
+
+agent:
+  # Tipo: qlearning
+  type: qlearning
+  # Acciones disponibles
+  actions:
+    - atacar
+    - usar_pocion
+    - huir
+    - esperar
+  # Hiperparámetros Q-Learning
+  alpha: 0.1        # Learning rate
+  gamma: 0.9        # Discount factor
+  epsilon: 1.0       # Exploración inicial
+  epsilon_min: 0.05  # Exploración mínima
+  epsilon_decay: 0.995  # Decaimiento por frame
+  # Persistencia
+  model_path: "q_table.json"
+  save_interval: 50  # Guardar cada N learns
+  # Q-table pre-existente (null = empezar de cero)
+  pretrained_path: null
+
+vision:
+  # Umbral de confianza YOLO
+  confidence_threshold: 0.6
+  # Modo debug (guarda frames OCR)
+  debug: false
+  # Regiones del HUD en coordenadas relativas al frame (x1, y1, x2, y2)
+  ocr_regions:
+    hp: [179, 88, 211, 103]
+    sp: [179, 103, 211, 116]
+
+rewards:
+  # Pesos de recompensa
+  weights:
+    damage_per_hp: -0.6
+    mob_killed: 10.0
+    potion_smart: 5.0
+    potion_waste: -3.0
+    attack_ok: 1.0
+    attack_waste: -2.0
+    flee_smart: 5.0
+    flee_waste: -1.0
+    wait_mobs: -4.0
+    survive: 0.1
+    idle_penalty: -3.0
+  # Umbrales
+  thresholds:
+    hp_critical: 20
+    hp_low: 40
+    sp_empty: 15
+    idle_threshold_sec: 20
+
+logging:
+  # Directorio de logs (relativo al repo)
+  dir: "logs"
+  # Archivo principal
+  file: "bot.log"
+  # Nivel global en consola
+  console_level: "INFO"
+  # Tamaño máximo por archivo de log (bytes)
+  max_bytes: 5242880  # 5 MB
+  # Backups a mantener
+  backup_count: 3
