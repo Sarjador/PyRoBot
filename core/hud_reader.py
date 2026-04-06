@@ -1,15 +1,20 @@
 import cv2
 import numpy as np
 import pytesseract
-pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+import os
+
+# Tesseract path: configurable via environment variable
+# On Windows: set TESSERACT_CMD=C:\Program Files\Tesseract-OCR\tesseract.exe
+# On Linux: usually available in PATH, no need to set
+_tesseract_cmd = os.environ.get("TESSERACT_CMD")
+if _tesseract_cmd:
+    pytesseract.pytesseract.tesseract_cmd = _tesseract_cmd
 
 
 # HUD READER: Para leer HP y SP desde la interfaz fija del juego
 
 # Asegúrate de tener pytesseract instalado y correctamente configurado.
 # https://github.com/tesseract-ocr/tesseract/releases
-# Puedes establecer manualmente la ruta si es necesario:
-# pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 def extraer_region_hp_sp(frame):
     """
@@ -28,7 +33,7 @@ def ocr_porcentaje(region):
     texto = pytesseract.image_to_string(umbral, config='--psm 7 -c tessedit_char_whitelist=0123456789')
     try:
         return int(texto.strip())
-    except:
+    except ValueError:
         return 0
 
 def leer_hp_sp(frame):
@@ -49,7 +54,7 @@ def leer_hp_sp(frame):
 
 # Prueba manual
 if __name__ == "__main__":
-    import capture
+    from core import capture
     ventana = capture.encontrar_ventana()
     if ventana:
         frame = capture.capturar_client_area(ventana)
